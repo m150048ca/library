@@ -1,0 +1,59 @@
+<?php
+$conn=mysqli_connect("localhost","root","","library");
+if(isset($_POST['submitbutton']))
+{
+   $sql="insert into student_name(fristname,lastname,username,password,email,mob,gender)
+   value('{$_POST['fname']}','{$_POST['lname']}','{$_POST['uname']}','{$_POST['pass']}','{$_POST['gender']}','{$_POST['email']}','{$_POST['mob']}')";
+   if($sql)
+   {
+	   echo"successfully inserted";
+   }
+   else
+	   echo"something wrong";
+}
+?>
+<html>
+<head>
+<script type="text/javascript" src="jquery.min.js"></script>
+
+</head>
+
+<body>
+<table align="center" >
+<tr><th height="100" width="400" colspan="2"><h1>Signup</h1></th></tr>
+<tr><td>Fristnme</td><td><input type="text" id="fristname"name="bid" pattern="[a-zA-Z]+" placeholder="frist name"></td></tr>
+<tr><td>Lastname</td><td><input type="text"  id="lastname" name="aname" pattern="[a-zA-Z ]+" placeholder="last name"></td></tr>
+<tr><td>username</td><td><input type="text" id="username" name="btitle"  pattern="^[A-Za-z0-9_]{1,15}$"></td></tr>
+<tr><td>password</td><td><input type="password" id="password" name="pub" ></td></tr>
+<tr><td>Gender</td><td><input type="text"  id="gebder" name="edi" placeholder="m/f" pattern="[m|f|M|F]"></td></tr>
+<tr><td>Email</td><td><input type="email" name="vol" ></td></tr>
+<tr><td>Mobile no</td><td><input type="text" id="mobile"name="pri" pattern="[0-9]+" placeholder="phone no"></td></tr>
+
+<tr><td>&nbsp </td></tr>
+<tr><td></td><td><input type="button" id ="submit" name="submit" value="New account"></td></tr>
+</table>
+
+</html>
+<script type="text/javascript">
+
+ $(function(){
+        $('#submit').click(function(){
+ var fname=$('#fristname').val();
+ var lname=$('#lastname').val();
+ var uname=$('#username').val();
+ var pass=$('#password').val();
+ var gender=$('#gender').val();
+ var email=$('#email').val();
+ var mob=$('#moblie').val();
+	 $.ajax({ url :"hm.php",
+	          type :"POST",
+			  async :false,
+			  data :{submitbutton:1,
+	                 lname: lname,
+					 fname:fname,
+					 uname:uname,
+					 pass:pass,
+					 gender:gender,
+					 email:email,
+					 mob:mob
+	                },succ
